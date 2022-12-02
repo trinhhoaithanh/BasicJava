@@ -1,0 +1,26 @@
+import java.util.ArrayList;
+
+public class DanhSachNhanSu implements NhapXuat {
+	private ArrayList<NhanSu> listNhanSu;
+	
+	public ArrayList<NhanSu> getListNhanSu() {
+		return listNhanSu;
+	}
+
+	public void setListNhanSu(ArrayList<NhanSu> listNhanSu) {
+		this.listNhanSu = listNhanSu;
+	}
+	public DanhSachNhanSu()
+	{
+		this.listNhanSu = new ArrayList<NhanSu>();
+	}
+	@Override
+	public void xuat() {
+		// TODO Auto-generated method stub
+		for (NhanSu ns:this.listNhanSu)
+		{
+			ns.xuat();
+		}
+	}
+
+}

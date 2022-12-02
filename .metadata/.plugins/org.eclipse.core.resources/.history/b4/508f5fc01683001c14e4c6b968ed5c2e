@@ -1,0 +1,73 @@
+import java.util.ArrayList;
+import java.util.Scanner;
+
+/*
+ * Mục đích : quản lý nghiệp vụ liên quan đến các giao dịch
+ */
+public class DanhSachGiaoDich {
+	// 1. Attributes
+	private ArrayList<GiaoDich> listGiaoDich;
+	private int tongSLGDVang;
+	private int tongSLGDTienTe;
+	// 2. Get set method
+
+	public ArrayList<GiaoDich> getListGiaoDich() {
+		return listGiaoDich;
+	}
+
+	public void setListGiaoDich(ArrayList<GiaoDich> listGiaoDich) {
+		this.listGiaoDich = listGiaoDich;
+	}
+
+	public int getTongSLGDVang() {
+		return tongSLGDVang;
+	}
+
+	public int getTongSLGDTienTe() {
+		return tongSLGDTienTe;
+	}
+
+	// 3. Constructors
+	public DanhSachGiaoDich() {
+		listGiaoDich = new ArrayList<GiaoDich>();
+
+	}
+
+	public DanhSachGiaoDich(ArrayList<GiaoDich> listGiaoDich) {
+		this.listGiaoDich = listGiaoDich;
+	}
+
+	// 4. Input, output methods
+	public void nhap(Scanner scan) {
+		boolean flag = true;
+		GiaoDich giaoDich;
+		do {
+			System.out.println("Vui lòng chọn: ");
+			System.out.println("1. Nhập giao dịch vàng");
+			System.out.println("2. Nhập giao dịch tiền tệ");
+			System.out.println("0. Thoát");
+			int chon = Integer.parseInt(scan.nextLine());
+			switch (chon) {
+			case 1:
+				giaoDich = new GiaoDichVang();
+				giaoDich.nhap(scan);
+				this.listGiaoDich.add(giaoDich);
+				break;
+			case 2:
+				giaoDich = new GiaoDichTienTe();
+				giaoDich.nhap(scan);
+				this.listGiaoDich.add(giaoDich);
+				break;
+			case 0:
+				flag = false;
+				break;
+			default:
+				System.out.println("Vui lòng nhập 0, 1 ,2");
+				break;
+			}
+
+		} while (flag);
+	}
+	// 5. Business methods
+
+}

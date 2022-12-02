@@ -1,0 +1,104 @@
+import java.util.ArrayList;
+
+public class NhanSu {
+	//1.attribute
+	protected String maNV;
+	protected String tenNV;
+	protected String namSinh;
+	protected String email;
+	protected String soDienThoai;
+	protected String maPhongBan;
+	protected ArrayList <Task> dsTask;
+	protected float luong;
+	protected float soNgayLamViec;
+	//2. get set 
+	
+	public String getMaNV() {
+		return maNV;
+	}
+
+	public void setMaNV(String maNV) {
+		this.maNV = maNV;
+	}
+
+	public String getTenNV() {
+		return tenNV;
+	}
+
+	public void setTenNV(String tenNV) {
+		this.tenNV = tenNV;
+	}
+
+	public String getNamSinh() {
+		return namSinh;
+	}
+
+	public void setNamSinh(String namSinh) {
+		this.namSinh = namSinh;
+	}
+
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
+
+	public String getMaPhongBan() {
+		return maPhongBan;
+	}
+
+	public void setMaPhongBan(String maPhongBan) {
+		this.maPhongBan = maPhongBan;
+	}
+
+	public ArrayList<Task> getDsTask() {
+		return dsTask;
+	}
+
+	public void setDsTask(ArrayList<Task> dsTask) {
+		this.dsTask = dsTask;
+	}
+
+	public float getSoNgayLamViec() {
+		return soNgayLamViec;
+	}
+
+	public void setSoNgayLamViec(float soNgayLamViec) {
+		this.soNgayLamViec = soNgayLamViec;
+	}
+
+	//3. constructor 
+	public NhanSu() {
+		// TODO Auto-generated constructor stub
+	}
+
+	public NhanSu(String maNV, String tenNV, String namSinh, String email, String soDienThoai) {
+		super();
+		this.maNV = maNV;
+		this.tenNV = tenNV;
+		this.namSinh = namSinh;
+		this.email = email;
+		this.soDienThoai = soDienThoai;
+	}
+
+	public NhanSu(String maNV, String tenNV, String namSinh, String email, String soDienThoai, String maPhongBan,
+			float soNgayLamViec) {
+		super();
+		this.maNV = maNV;
+		this.tenNV = tenNV;
+		this.namSinh = namSinh;
+		this.email = email;
+		this.soDienThoai = soDienThoai;
+		this.maPhongBan = maPhongBan;
+		this.soNgayLamViec = soNgayLamViec;
+	}
+
+	
+	
+	//4. input out put
+	//5. business
+	
+
+}

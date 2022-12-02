@@ -1,0 +1,245 @@
+import java.util.ArrayList;
+import java.util.Scanner;
+
+public class CongTy {
+	//1,Attribute
+	private String tenCongTy;
+	private String maSoThue;
+	private float doanhThuThang;
+	private DanhSachNhanSu objListNhanSu;
+	//2. get set 
+	
+	public String getTenCongTy() {
+		return tenCongTy;
+	}
+
+	public void setTenCongTy(String tenCongTy) {
+		this.tenCongTy = tenCongTy;
+	}
+
+	public String getMaSoThue() {
+		return maSoThue;
+	}
+
+	public void setMaSoThue(String maSoThue) {
+		this.maSoThue = maSoThue;
+	}
+
+	public float getDoanhThuThang() {
+		return doanhThuThang;
+	}
+
+	public void setDoanhThuThang(float doanhThuThang) {
+		this.doanhThuThang = doanhThuThang;
+	}
+
+	public DanhSachNhanSu getObjListNhanSu() {
+		return objListNhanSu;
+	}
+
+	public void setObjListNhanSu(DanhSachNhanSu objListNhanSu) {
+		this.objListNhanSu = objListNhanSu;
+	}
+
+	//3. constructor
+	public CongTy() {
+	// TODO Auto-generated constructor stub
+		this.objListNhanSu = new DanhSachNhanSu();
+}
+	//4. Input output
+	public void nhap(Scanner scan)
+	{
+		System.out.println("*****Nhập thông tin công ty*****");
+		System.out.print("Tên công ty");
+		this.tenCongTy = scan.nextLine();
+		System.out.print("Mã số thuế công ty");
+		this.maSoThue = scan.nextLine();
+		System.out.print("Doanh thu:");
+		this.doanhThuThang = Float.parseFloat(scan.nextLine());
+	}
+	public void xuat()
+	{
+		System.out.println("*******Thông tin công ty*******");
+		System.out.println("Tên công ty: "+this.tenCongTy);
+		System.out.println("Mã số thuế: "+this.maSoThue);
+		System.out.println("Doanh thu tháng: "+this.doanhThuThang);
+		System.out.println("************************************");
+		this.objListNhanSu.xuat();
+	}
+	
+	//5. Business
+	public void tinhLuong()
+	{
+		this.objListNhanSu.tinhLuong();
+	}
+	public void dummyDataCty() {
+		this.tenCongTy = "CyberSoft-CyberLearn";
+		this.maSoThue = "01292332";
+		this.doanhThuThang = 435334f;
+	}
+	public void dummyDataNhanSu() {
+		NhanSu ns = new NhanSu();
+		ns = new TruongPhong("13", "TP Bổ sung 1", "098233", 24);
+		objListNhanSu.themNhanSu(ns);
+		ns = new TruongPhong("14", "TP Bổ sung 2", "091833", 21);
+		objListNhanSu.themNhanSu(ns);
+		ns = new NhanVienThuong("1", "Lan", "09832", 20);
+		objListNhanSu.themNhanSu(ns);
+		ns = new NhanVienThuong("2", "Hưng", "098232", 23);
+		objListNhanSu.themNhanSu(ns);
+		ns = new NhanVienThuong("3", "Việt", "098132", 31);
+		objListNhanSu.themNhanSu(ns);
+		ns = new NhanVienThuong("4", "An", "091832", 25);
+		objListNhanSu.themNhanSu(ns);
+		ns = new NhanVienThuong("5", "Tuyết", "098432", 23);
+		objListNhanSu.themNhanSu(ns);
+		ns = new NhanVienThuong("6", "Mỹ", "092832", 31);
+		objListNhanSu.themNhanSu(ns);
+
+		ns = new TruongPhong("8", "TP Mai", "098233", 24);
+		objListNhanSu.themNhanSu(ns);
+		ns = new TruongPhong("9", "TP Luân", "091833", 21);
+		objListNhanSu.themNhanSu(ns);
+		ns = new TruongPhong("10", "TP Kiệt", "091833", 23);
+		objListNhanSu.themNhanSu(ns);
+
+		ns = new GiamDoc("11", "GD Tiên", "0981", 19, 80);
+		objListNhanSu.themNhanSu(ns);
+		ns = new GiamDoc("12", "GD Huệ", "09181", 21, 20);
+		objListNhanSu.themNhanSu(ns);
+	}
+	/*
+	 * Phân bổ nhân viên về phòng ban hay chỉ đỉnh trưởng phòng
+	 * Bước 1: Duyệt danh sách và kiểm tra nếu là NhanVienThuong
+	 * Bước 2: Show danh sách Trưởng Phòng (Mã và tên)
+	 * Bước 3: Có muốn phân bổ hay không, chọn Y đế phân bổ chọn N để đi tiếp
+	 * Bước 4: Nếu N đi tiếp đế nhân viên tiếp theo
+	 * Bước 5: Nếu Y, yêu cầu nhập mã trưởng phòng đã liệt kê ở bước 2
+	 * Bước 6: Kiểm tra mã nhập bước 5 có nằm trong danh sách mã trưởng phòng nằm trong bước 2 hay không
+	 * Bước 7: Nếu có: Lấy trưởng phòng với mã đã chọn ở bước 5 -> Lấy ra obj Trưởng phòng
+	 * Bước 8: Gán trưởng phòng bước 7 cho Trưởng phòng của Nhân Viên đang duyệt
+	 * Bước 9: Nếu không, lặp lại bước 5
+	 * Bước 10: Tăng số lượng nhân viên dưới quyền cho trưởng phòng đó
+	 */
+	public void phanBoNhanVienThuong()
+	{	Scanner scan = new Scanner (System.in);
+		//Bước 1
+		for (NhanSu ns:this.objListNhanSu.getListNhanSu())
+		{
+			if (ns instanceof NhanVienThuong)
+			{//Bước 2
+				System.out.println("Đang phân bổ cho nhân viên");
+				ns.xuatMaVaTen();
+				 phanBoChoMotNhanSu( scan,  ns);
+			}
+		}
+	}
+	private void phanBoChoMotNhanSu(Scanner scan, NhanSu ns)
+	{
+		// start phân bổ cho một nhân sự
+		showMaVaTenTPhong();
+		
+		boolean flag=true;
+		do
+		{
+			//Buoc 3
+			System.out.println("Chọn 1 để phân bổ, chọn 2 để đi tiếp");
+			int chon = Integer.parseInt(scan.nextLine());
+			if (chon==1||chon==2)
+			{
+				if (chon==1)
+				{
+					
+					TruongPhong tp = chonTruongPhong(scan);
+					//Bước 7 đã có trưởng phòng lưu ở tp
+					//Bước 8
+					((NhanVienThuong) ns).setTruongPhong(tp);
+					tp.tangNhanVien();//Bước 10
+				}
+				flag=false;//buoc 4
+			}
+			else
+			{
+				System.out.println("Chỉ được chọn 1 hoặc 2");
+				flag = true;
+			}
+		}while (flag);
+		//end phân bổ cho một nhân sự
+	}
+	public TruongPhong chonTruongPhong(Scanner scan)
+	{
+		TruongPhong tp=null;
+		do
+		{
+			
+		
+		System.out.println("Vui lòng chọn mã đã liệt kê trên");
+		String chonMa = scan.nextLine();
+		//Bước 6: kiểm tra mã có nằm tỏng ds hay không
+		 tp = timTruongPhongTheoMa(chonMa);
+		 chonMa = scan.nextLine();
+		System.out.println("Vui lòng chọn mã đã liệt kê trên");
+		}while(tp==null);
+		return tp;
+	}
+	private void showMaVaTenTPhong() {
+		System.out.println("*******Danh sách trưởng phòng*******");
+		ArrayList <TruongPhong> list = layDSTruongPhong();
+		for (TruongPhong tp:list)
+		{
+			
+			tp.xuatMaVaTen();
+		}
+		System.out.println("=====================================");
+	}
+	public void lietKeDSTruongPhong()
+	{
+		for (NhanSu ns: objListNhanSu.getListNhanSu())
+		{
+			if (ns instanceof TruongPhong)
+				
+			{
+				ns.xuatMaVaTen();
+			}
+		}
+	}
+	public TruongPhong timTruongPhongTheoMa(String ma)
+	{
+		TruongPhong tPhong=null;//Chưa tìm thấy
+		for (NhanSu ns: objListNhanSu.getListNhanSu())
+		{
+			if (ns instanceof TruongPhong)
+			{
+				if (ns.getMaSo().compareTo(ma)==0)
+				{
+					tPhong = (TruongPhong) ns;
+				}
+			}
+		}
+		return tPhong;
+	}
+	public ArrayList<TruongPhong> layDSTruongPhong() {
+		ArrayList<TruongPhong> list = new ArrayList<TruongPhong>();
+		for (NhanSu ns : objListNhanSu.getListNhanSu()) {
+			if (ns instanceof TruongPhong) {
+				list.add((TruongPhong) ns);
+			}
+		}
+		return list;
+	}
+	public void themNhanSu(Scanner scan)
+	{
+		System.out.println("*******Chức Năng Thêm Nhân Sự****** ");
+		NhanSu nhanSu = this.objListNhanSu.nhap(scan);
+		if ( nhanSu !=null)
+		{
+			//Bước 1: thêm vào danh sách
+			this.objListNhanSu.themNhanSu(nhanSu);
+			//Bước 2: cho người dùng phân bổ nhân sự (nếu là nvthường)vào trưởng phòng hay không
+			if (nhanSu instanceof NhanVienThuong)
+			{
+				
+			}
+		}
+	}
+}
